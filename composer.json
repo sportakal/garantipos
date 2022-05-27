@@ -1,0 +1,27 @@
+{
+    "name": "sportakal/garantipos",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Sportakal\\Garantipos\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "sportakal",
+            "email": "portakalsinan@gmail.com"
+        }
+    ],
+    "require": {
+        "mews/pos": "^0.7.0",
+      "ext-curl": "*",
+      "ext-xml": "*",
+      "ext-dom": "*",
+        "ext-simplexml": "*",
+      "ext-json": "*",
+        "vlucas/phpdotenv": "^5.4"
+    },
+    "require-dev": {
+        "php-sage/sage": "^1.2"
+    }
+}
