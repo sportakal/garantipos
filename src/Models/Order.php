@@ -6,10 +6,10 @@ class Order extends BaseModel
 {
     protected string $OrderID;
     protected string $GroupID;
-    protected array $AddressList;
+    protected array $AddressList = [];
     protected string $StartDate;
     protected string $EndDate;
-    protected array $ItemList;
+    protected array $ItemList = [];
     protected Recurring $Recurring;
     protected array $CommentList;
 

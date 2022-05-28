@@ -2,6 +2,8 @@
 
 namespace Sportakal\Garantipos\Results;
 
+use Sportakal\Garantipos\Models\Order;
+use Sportakal\Garantipos\Models\Transaction;
 use Sportakal\Garantipos\Results\Constructors\XmlResult;
 
 class CompleteThreeDSecureResult extends XmlResult

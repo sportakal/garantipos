@@ -6,24 +6,24 @@ class Address extends BaseModel
 {
     protected string $_parent_key = 'Address';
     protected string $Type = 'B'; // B for 'billing' or S for 'shipping'
-    protected string $Name='';
-    protected string $LastName='';
-    protected string $Company='';
-    protected string $Text='';
-    protected string $District='';
-    protected string $City='';
-    protected string $Country='';
-    protected string $PostalCode='';
-    protected string $PhoneNumber='';
-    protected string $GsmNumber='';
-    protected string $FaxNumber='';
+    protected string $Name = '';
+    protected string $LastName = '';
+    protected string $Company = '';
+    protected string $Text = '';
+    protected string $District = '';
+    protected string $City = '';
+    protected string $Country = '';
+    protected string $PostalCode = '';
+    protected string $PhoneNumber = '';
+    protected string $GsmNumber = '';
+    protected string $FaxNumber = '';
 
     /**
      * @return string
      */
     public function getType(): string
     {
-        return $this->Type;
+        return $this->Type ?? '';
     }
 
     /**
@@ -39,7 +39,7 @@ class Address extends BaseModel
      */
     public function getName(): string
     {
-        return $this->Name;
+        return $this->Name ?? '';
     }
 
     /**
@@ -55,7 +55,7 @@ class Address extends BaseModel
      */
     public function getLastName(): string
     {
-        return $this->LastName;
+        return $this->LastName ?? '';
     }
 
     /**
@@ -71,7 +71,7 @@ class Address extends BaseModel
      */
     public function getCompany(): string
     {
-        return $this->Company;
+        return $this->Company ?? '';
     }
 
     /**
@@ -87,7 +87,7 @@ class Address extends BaseModel
      */
     public function getText(): string
     {
-        return $this->Text;
+        return $this->Text ?? '';
     }
 
     /**
@@ -103,7 +103,7 @@ class Address extends BaseModel
      */
     public function getDistrict(): string
     {
-        return $this->District;
+        return $this->District ?? '';
     }
 
     /**
@@ -119,7 +119,7 @@ class Address extends BaseModel
      */
     public function getCity(): string
     {
-        return $this->City;
+        return $this->City ?? '';
     }
 
     /**
@@ -135,7 +135,7 @@ class Address extends BaseModel
      */
     public function getCountry(): string
     {
-        return $this->Country;
+        return $this->Country ?? '';
     }
 
     /**
@@ -151,7 +151,7 @@ class Address extends BaseModel
      */
     public function getPostalCode(): string
     {
-        return $this->PostalCode;
+        return $this->PostalCode ?? '';
     }
 
     /**
@@ -167,7 +167,7 @@ class Address extends BaseModel
      */
     public function getPhoneNumber(): string
     {
-        return $this->PhoneNumber;
+        return $this->PhoneNumber ?? '';
     }
 
     /**
@@ -183,7 +183,7 @@ class Address extends BaseModel
      */
     public function getGsmNumber(): string
     {
-        return $this->GsmNumber;
+        return $this->GsmNumber ?? '';
     }
 
     /**
@@ -199,7 +199,7 @@ class Address extends BaseModel
      */
     public function getFaxNumber(): string
     {
-        return $this->FaxNumber;
+        return $this->FaxNumber ?? '';
     }
 
     /**

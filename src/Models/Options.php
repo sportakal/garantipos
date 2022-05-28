@@ -15,6 +15,7 @@ class Options extends BaseModel
     protected string $terminal_user_id;
     protected string $terminal_merchant_id;
     protected string $store_key;
+    protected string $lang = 'TR'; //TR EN RO
 
 
     /**
@@ -144,6 +145,22 @@ class Options extends BaseModel
     public function setStoreKey(string $store_key): void
     {
         $this->store_key = $store_key;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLang(): string
+    {
+        return $this->lang;
+    }
+
+    /**
+     * @param string $lang
+     */
+    public function setLang(string $lang): void
+    {
+        $this->lang = $lang;
     }
 
 

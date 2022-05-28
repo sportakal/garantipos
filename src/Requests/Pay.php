@@ -2,7 +2,7 @@
 
 namespace Sportakal\Garantipos\Requests;
 
-use Sportakal\Garantipos\Models\RequestModel;
+use Sportakal\Garantipos\Models\GVPSRequestModel;
 use Sportakal\Garantipos\Models\ResultModels\ResultModelInterface;
 use Sportakal\Garantipos\Requests\Constructors\XmlRequest;
 use Sportakal\Garantipos\Results\Interfaces\PaymentResultInterface;
@@ -11,24 +11,24 @@ use Sportakal\Garantipos\Utils\CreateHashData;
 
 class Pay extends XmlRequest
 {
-    public function __construct(RequestModel $GVPSRequest)
+
+    public function __construct(GVPSRequestModel $GVPSRequest)
     {
         parent::__construct($GVPSRequest);
-        $this->GVPSRequest->getTransaction()->setType('sales');
+        $this->requestModel->getTransaction()->setType('sales');
     }
 
     public function setHashData(): void
     {
         $this->setSecurityData();
         $string = '';
-        $string .= $this->GVPSRequest->getOrder()->getOrderID();
-        $string .= $this->GVPSRequest->getTerminal()->getID();
-        $string .= $this->GVPSRequest->getCard()->getNumber();
-        $string .= $this->GVPSRequest->getTransaction()->getAmount();
+        $string .= $this->requestModel->getOrder()->getOrderID();
+        $string .= $this->requestModel->getTerminal()->getID();
+        $string .= $this->requestModel->getCard()->getNumber();
+        $string .= $this->requestModel->getTransaction()->getAmount();
         $string .= $this->security_data;
         $this->hash_data = CreateHashData::get($string);
-
-        $this->GVPSRequest->getTerminal()->setHashData($this->hash_data);
+        $this->requestModel->setHash($this->hash_data);
     }
 
     /**
@@ -40,6 +40,7 @@ class Pay extends XmlRequest
         if (empty($this->response)) {
             $this->exec();
         }
-        return (new PayResult($this->response->getArray()));
+
+        return (new PayResult($this->response->getArray(), $this->requestModel));
     }
 }

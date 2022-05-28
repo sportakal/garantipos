@@ -27,9 +27,13 @@ if (!$md_result->getMdStatus()) {
     ddd($md_result->getMdStatus(), $md_result->getResponseMessage(), $md_result->getMdErrorMessage());
 }
 
-$response = new \Sportakal\Garantipos\Requests\CompleteThreeDSecure($_ENV['TERMINAL_PROV_USER_PASSWORD']);
+$request = $md_result->getGVPSRequest();
+
+$response = new \Sportakal\Garantipos\Requests\CompleteThreeDSecure($request);
 try {
     $result = $response->getResult();
+//    ddd($result->getOrder(), $result->getTransaction());
+
     ddd($result->getStatus(), $result->getStatusMessage(), $result->getErrorMessage());
 } catch (Exception $e) {
     ddd($e->getMessage());

@@ -11,13 +11,14 @@ class Item extends BaseModel
     protected string $Quantity;
     protected string $Price;
     protected string $TotalAmount;
+    protected string $Description;
 
     /**
      * @return string
      */
     public function getNumber(): string
     {
-        return $this->Number;
+        return $this->Number ?? '';
     }
 
     /**
@@ -33,7 +34,7 @@ class Item extends BaseModel
      */
     public function getProductID(): string
     {
-        return $this->ProductID;
+        return $this->ProductID ?? '';
     }
 
     /**
@@ -49,7 +50,7 @@ class Item extends BaseModel
      */
     public function getProductCode(): string
     {
-        return $this->ProductCode;
+        return $this->ProductCode ?? '';
     }
 
     /**
@@ -65,7 +66,7 @@ class Item extends BaseModel
      */
     public function getQuantity(): string
     {
-        return $this->Quantity;
+        return $this->Quantity ?? '';
     }
 
     /**
@@ -81,7 +82,7 @@ class Item extends BaseModel
      */
     public function getPrice(): string
     {
-        return $this->Price;
+        return $this->Price ?? '';
     }
 
     /**
@@ -97,7 +98,7 @@ class Item extends BaseModel
      */
     public function getTotalAmount(): string
     {
-        return $this->TotalAmount;
+        return $this->TotalAmount ?? '';
     }
 
     /**
@@ -108,6 +109,20 @@ class Item extends BaseModel
         $this->TotalAmount = $TotalAmount;
     }
 
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->Description ?? '';
+    }
 
+    /**
+     * @param string $Description
+     */
+    public function setDescription(string $Description): void
+    {
+        $this->Description = $Description;
+    }
 
 }

@@ -4,7 +4,7 @@ namespace Sportakal\Garantipos\Requests;
 
 use Sportakal\Garantipos\Models\Card;
 use Sportakal\Garantipos\Models\Customer;
-use Sportakal\Garantipos\Models\RequestModel;
+use Sportakal\Garantipos\Models\GVPSRequestModel;
 use Sportakal\Garantipos\Models\Options;
 use Sportakal\Garantipos\Models\Order;
 use Sportakal\Garantipos\Models\Secure3D;
@@ -19,67 +19,23 @@ use Sportakal\Garantipos\Utils\CreateHashData;
 
 class CompleteThreeDSecure extends XmlRequest
 {
-    public function __construct($TerminalProvUserPassword)
+    public function __construct(GVPSRequestModel $GVPSRequest)
     {
-        $options = new Options();
-        $options->setMode($_POST['mode']); //TEST
-        $options->setApiVersion($_POST['apiversion']);
-        $options->setTerminalId($_POST['clientid']);
-        $options->setTerminalProvUserId($_POST['terminalprovuserid']);
-        $options->setTerminalProvUserPassword($TerminalProvUserPassword);
-        $options->setTerminalUserId($_POST['terminaluserid']);
-        $options->setTerminalMerchantId($_POST['terminalmerchantid']);
-
-        $card = new Card();
-        $card->setNumber('');
-        $card->setExpireDate('');
-        $card->setCVV2('');
-
-        $customer = new Customer();
-        $customer->setIpAddress($_POST['customeripaddress']);
-        $customer->setEmailAddress($_POST['customeremailaddress']);
-
-
-        $order = new Order();
-        $order->setOrderID($_POST['orderid']);
-//        $order->addAddress(new Address());
-
-        $transaction = new Transaction();
-        $transaction->setType($_POST['txntype']);
-        $transaction->setInstallmentCnt($_POST['txninstallmentcount']);
-        $transaction->setAmount($_POST['txnamount']);
-        $transaction->setCurrencyCode($_POST['txncurrencycode']);
-        $transaction->setCardholderPresentCode('13');
-        $Secure3D = new Secure3D();
-        $Secure3D->setAuthenticationCode($_POST['cavv']);
-        $Secure3D->setSecurityLevel($_POST['eci']);
-        $Secure3D->setTxnID($_POST['xid']);
-        $Secure3D->setMd($_POST['md']);
-        $transaction->setSecure3D($Secure3D);
-        $transaction->setMotoInd('N');
-
-        $request = new RequestModel();
-        $request->setOptions($options);
-        $request->setCard($card);
-        $request->setCustomer($customer);
-        $request->setOrder($order);
-        $request->setTransaction($transaction);
-
-        parent::__construct($request);
+        parent::__construct($GVPSRequest);
     }
+
 
     public function setHashData(): void
     {
         $this->setSecurityData();
         $string = '';
-        $string .= $this->GVPSRequest->getOrder()->getOrderID();
-        $string .= $this->GVPSRequest->getTerminal()->getID();
-        $string .= $this->GVPSRequest->getCard()->getNumber();
-        $string .= $this->GVPSRequest->getTransaction()->getAmount();
+        $string .= $this->requestModel->getOrder()->getOrderID();
+        $string .= $this->requestModel->getTerminal()->getID();
+        $string .= $this->requestModel->getTransaction()->getAmount();
         $string .= $this->security_data;
         $this->hash_data = CreateHashData::get($string);
 
-        $this->GVPSRequest->getTerminal()->setHashData($this->hash_data);
+        $this->requestModel->getTerminal()->setHashData($this->hash_data);
     }
 
     /**
@@ -91,7 +47,7 @@ class CompleteThreeDSecure extends XmlRequest
         if (empty($this->response)) {
             $this->exec();
         }
-        return (new CompleteThreeDSecureResult($this->response->getArray()));
+        return (new CompleteThreeDSecureResult($this->response->getArray(), $this->requestModel));
     }
 
 }

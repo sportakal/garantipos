@@ -2,7 +2,7 @@
 
 namespace Sportakal\Garantipos\Models;
 
-class RequestModel extends BaseModel
+class GVPSRequestModel extends BaseModel implements RequestModelInterface
 {
     protected string $_parent_key = 'GVPSRequest';
     protected string $Mode = 'TEST';
@@ -14,9 +14,6 @@ class RequestModel extends BaseModel
     protected Card $Card;
     protected Order $Order;
     protected Transaction $Transaction;
-
-    protected string $SuccessURL;
-    protected string $ErrorURL;
 
     /**
      * @return string
@@ -150,34 +147,10 @@ class RequestModel extends BaseModel
     }
 
     /**
-     * @return string
+     * @param string $hash
      */
-    public function getSuccessURL(): string
+    public function setHash(string $hash): void
     {
-        return $this->SuccessURL;
-    }
-
-    /**
-     * @param string $SuccessURL
-     */
-    public function setSuccessURL(string $SuccessURL): void
-    {
-        $this->SuccessURL = $SuccessURL;
-    }
-
-    /**
-     * @return string
-     */
-    public function getErrorURL(): string
-    {
-        return $this->ErrorURL;
-    }
-
-    /**
-     * @param string $ErrorURL
-     */
-    public function setErrorURL(string $ErrorURL): void
-    {
-        $this->ErrorURL = $ErrorURL;
+        $this->getTerminal()->setHashData($hash);
     }
 }

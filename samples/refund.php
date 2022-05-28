@@ -4,7 +4,7 @@
 use Sportakal\Garantipos\Models\Address;
 use Sportakal\Garantipos\Models\Card;
 use Sportakal\Garantipos\Models\Customer;
-use Sportakal\Garantipos\Models\RequestModel;
+use Sportakal\Garantipos\Models\GVPSRequestModel;
 use Sportakal\Garantipos\Models\Options;
 use Sportakal\Garantipos\Models\Order;
 use Sportakal\Garantipos\Models\Terminal;
@@ -34,7 +34,7 @@ $transaction->setAmount(80);
 $transaction->setCurrencyCode('TRY');
 $transaction->setOriginalRetrefNum('214707386684');
 
-$request = new RequestModel();
+$request = new GVPSRequestModel();
 $request->setOptions($options);
 $request->setCustomer($customer);
 $request->setOrder($order);

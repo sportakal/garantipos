@@ -15,9 +15,9 @@ abstract class XmlRequest extends RequestBase
      */
     protected function exec():void
     {
-        $array = [$this->GVPSRequest->toArray()];
+        $array = [$this->requestModel->toArray()];
         $xml = (new XmlCreator($array, false))->getXml();
         $body = "data=" . $xml;
-        $this->response = (new Curl(GetHost::get($this->GVPSRequest->getMode(), true), $body))->getResponse();
+        $this->response = (new Curl(GetHost::get($this->requestModel->getMode(), true), $body))->getResponse();
     }
 }

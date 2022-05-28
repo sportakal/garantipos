@@ -142,7 +142,7 @@ $error_message = $result->getErrorMessage()); //string
 3D Secure işlemlerde mdStatusCode ve mdErrorMessage değerleri de döner.
 
 3D Secure işlemi sonucunda veriler, **successUrl** veya **errorUrl** olarak belirlediğiniz adrese post edilir. Bu
-adreste aşağıdaki methodla bu verileri yakalayabilirsiniz. Ve mdStatus değerlerini kontrol edebilirsiniz.
+adreste aşağıdaki methodla bu verileri yakalayabilirsiniz ve mdStatus değerlerini kontrol edebilirsiniz.
 
 ```php
 $result = new \Sportakal\Garantipos\Results\ThreeDSecurePayResult($options);
@@ -150,6 +150,13 @@ $result = new \Sportakal\Garantipos\Results\ThreeDSecurePayResult($options);
 $md_status = $result->getMdStatus();
 $md_response_message = $result->getResponseMessage();
 $md_error_message = $result->getErrorMessage()
+```
+
+İşlemlerin sonucunda **Order** ve **Transaction** nesneleri de döner.
+
+```php
+$order = $result->getOrder();
+$transaction = $result->getTransaction();
 ```
 
 ***/samples*** klasöründe daha fazla örnek bulabilirsiniz.

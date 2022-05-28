@@ -2,7 +2,8 @@
 
 namespace Sportakal\Garantipos\Requests\Constructors;
 
-use Sportakal\Garantipos\Models\RequestModel;
+use Sportakal\Garantipos\Models\GVPSRequestModel;
+use Sportakal\Garantipos\Models\RequestModelInterface;
 use Sportakal\Garantipos\Models\ResultModels\ResultModelInterface;
 use Sportakal\Garantipos\Requests\Interfaces\RequestInterface;
 use Sportakal\Garantipos\Utils\CreateHashData;
@@ -13,18 +14,18 @@ abstract class RequestBase implements RequestInterface
 {
     protected string $hash_data;
     protected string $security_data;
-    protected RequestModel $GVPSRequest;
+    protected RequestModelInterface $requestModel;
     protected Response $response;
 
-    public function __construct(RequestModel $GVPSRequest)
+    public function __construct(RequestModelInterface $requestModel)
     {
-        $this->GVPSRequest = $GVPSRequest;
+        $this->requestModel = $requestModel;
         $this->setHashData();
     }
 
     protected function setSecurityData(): void
     {
-        $this->security_data = CreateSecurityData::get($this->GVPSRequest->getTerminal());
+        $this->security_data = CreateSecurityData::get($this->requestModel->getTerminal());
     }
 
     public function getHashData(): string

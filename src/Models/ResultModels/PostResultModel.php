@@ -33,6 +33,7 @@ class PostResultModel extends Arrayable implements ResultModelInterface
     public string $successurl;
     public string $errorurl;
     public string $hash;
+    public string $secure3dhash;
     public string $hostrefnum;
 
     public function __construct(array $post_fields = [])
@@ -40,33 +41,10 @@ class PostResultModel extends Arrayable implements ResultModelInterface
         if (count($post_fields) === 0) {
             $post_fields = $_POST;
         }
+        foreach ($post_fields as $key => $value) {
+            $this->{$key} = $value;
+        }
         $this->fields = $post_fields;
-        $this->secure3dsecuritylevel = $post_fields['secure3dsecuritylevel'] ?? '';
-        $this->mode = $post_fields['mode'] ?? '';
-        $this->apiversion = $post_fields['apiversion'] ?? '';
-        $this->clientid = $post_fields['clientid'] ?? '';
-        $this->terminalprovuserid = $post_fields['terminalprovuserid'] ?? '';
-        $this->terminaluserid = $post_fields['terminaluserid'] ?? '';
-        $this->terminalmerchantid = $post_fields['terminalmerchantid'] ?? '';
-        $this->customeripaddress = $post_fields['customeripaddress'] ?? '';
-        $this->customeremailaddress = $post_fields['customeremailaddress'] ?? '';
-        $this->orderid = $post_fields['orderid'] ?? '';
-        $this->txntype = $post_fields['txntype'] ?? '';
-        $this->txninstallmentcount = $post_fields['txninstallmentcount'] ?? '';
-        $this->txnamount = $post_fields['txnamount'] ?? '';
-        $this->txncurrencycode = $post_fields['txncurrencycode'] ?? '';
-        $this->cavv = $post_fields['cavv'] ?? '';
-        $this->eci = $post_fields['eci'] ?? '';
-        $this->xid = $post_fields['xid'] ?? '';
-        $this->md = $post_fields['md'] ?? '';
-        $this->mdstatus = $post_fields['mdstatus'] ?? '';
-        $this->mderrormessage = $post_fields['mderrormessage'] ?? '';
-        $this->response = $post_fields['response'] ?? '';
-        $this->errmsg = $post_fields['errmsg'] ?? '';
-        $this->hostmsg = $post_fields['hostmsg'] ?? '';
-        $this->successurl = $post_fields['successurl'] ?? '';
-        $this->errorurl = $post_fields['errorurl'] ?? '';
         $this->hash = $_POST['secure3dhash'] ?? '';
-        $this->hostrefnum = $_POST['hostrefnum'] ?? '';
     }
 }
