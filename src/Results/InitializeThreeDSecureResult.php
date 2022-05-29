@@ -40,4 +40,9 @@ class InitializeThreeDSecureResult implements PaymentResultInterface
     {
         return $this->response->getRawBody();
     }
+
+    public function getData(): array
+    {
+        return [$this->response->getRawBody()];
+    }
 }

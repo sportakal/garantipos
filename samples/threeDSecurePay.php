@@ -28,7 +28,7 @@ if ($_POST) {
     try {
         $result = new \Sportakal\Garantipos\Results\ThreeDSecurePayResult($options);
 //        ddd($result->getOrder(), $result->getTransaction());
-        ddd($result->getMdStatus(), $result->getResponseMessage(), $result->getErrorMessage());
+        ddd($result->getMdStatus(), $result->getMdStatusCode(), $result->getResponseMessage(), $result->getErrorMessage());
     } catch (Exception $e) {
         ddd($e->getMessage());
     }
@@ -36,7 +36,7 @@ if ($_POST) {
 
 
 $card = new Card();
-$card->setNumber('5549608789641500'); //5406697543211173 //5549608789641500
+$card->setNumber('5549608789641501'); //5406697543211173 //5549608789641500
 $card->setExpireDate('0323'); //0323 //0323
 $card->setCVV2('712'); //465 //712
 
@@ -83,9 +83,10 @@ $request->setSuccessurl((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' 
 $request->setErrorurl((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
 
 $response = new ThreeDSecurePay($request);
-$response = $response->getResult();
+$result = $response->getResult();
 
-echo $response->getHtml();
+
+echo $result->getHtml();
 //echo '<pre>';
 //dd($response->getRawBody());
 //echo '</pre>';

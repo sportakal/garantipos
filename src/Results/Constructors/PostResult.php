@@ -44,12 +44,12 @@ abstract class PostResult extends Arrayable implements PaymentResultInterface
         $this->options = $options;
 
         $this->setMdStatus(in_array((int)$this->postResultModel->mdstatus, [1, 2, 3, 4], true));
-        $this->setMdStatusCode((int)$this->postResultModel->mdstatus);
-        $this->setMdErrorMessage($this->postResultModel->mderrormessage);
-        $this->setResponseMessage($this->postResultModel->response);
-        $this->setErrorMessage($this->postResultModel->errmsg);
-        $this->setHostMessage($this->postResultModel->hostmsg);
-        $this->setReferenceNumber($this->postResultModel->hostrefnum);
+        $this->setMdStatusCode((int)($this->postResultModel->mdstatus ?? 0));
+        $this->setMdErrorMessage($this->postResultModel->mderrormessage ?? '');
+        $this->setResponseMessage($this->postResultModel->response ?? '');
+        $this->setErrorMessage($this->postResultModel->errmsg ?? '');
+        $this->setHostMessage($this->postResultModel->hostmsg ?? '');
+        $this->setReferenceNumber($this->postResultModel->hostrefnum ?? '');
 
         $this->setRequest();
         if ($this->getHashData() !== $this->postResultModel->secure3dhash) {
