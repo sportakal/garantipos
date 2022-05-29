@@ -74,11 +74,7 @@ try {
     $result = $request->getResult();
     $bin_list = $result->getBinList();
 
-    foreach ($bin_list as $bin) {
-        if (strpos($card->getNumber(), $bin['BINNum']) === 0) {
-            ddd($bin);
-        }
-    }
+    ddd($result->getBin());
     ddd($result->getStatus(), $result->getStatusMessage(), $result->getErrorMessage());
 } catch (Exception $e) {
     ddd($e->getMessage());
