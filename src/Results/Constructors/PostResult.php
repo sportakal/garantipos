@@ -135,6 +135,11 @@ abstract class PostResult extends Arrayable implements PaymentResultInterface
         return $gvps_request;
     }
 
+    public function getData(): array
+    {
+        return $this->postResultModel->fields ?? [];
+    }
+
     public function getOrder(): Order
     {
         return $this->request_model->getOrder();

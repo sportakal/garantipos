@@ -12,4 +12,6 @@ interface PaymentResultInterface
     public function getOrder(): Order;
 
     public function getTransaction(): Transaction;
+
+    public function getData(): array;
 }

@@ -48,6 +48,11 @@ abstract class XmlResult implements PaymentResultInterface
         $this->request_model = $request_model;
     }
 
+    public function getData(): array
+    {
+        return $this->xmlResultModel->fields ?? [];
+    }
+
     public function getOrder(): Order
     {
         return $this->request_model->getOrder();
