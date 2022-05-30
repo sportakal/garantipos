@@ -18,4 +18,14 @@ class ThreeDSecurePayResult extends PostResult
         $pay = new ThreeDSecurePay($this->request_model);
         $this->hash_data = $pay->getHashData();
     }
+
+    public function getStatus(): bool
+    {
+        return ($this->postResultModel->procreturncode ?? '') === "00";
+    }
+
+    public function getStatusCode(): string
+    {
+        return $this->postResultModel->procreturncode ?? '';
+    }
 }

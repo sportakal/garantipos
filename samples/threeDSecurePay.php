@@ -68,7 +68,7 @@ $transaction = new Transaction();
 $transaction->setType('sales');
 $transaction->setInstallmentCnt("");
 $transaction->setAmount(80);
-$transaction->setCurrencyCode('TRY');
+$transaction->setCurrencyCode('EUR');
 $transaction->setCardholderPresentCode('0');
 $transaction->setMotoInd('N');
 $transaction->setDescription('test payment');
