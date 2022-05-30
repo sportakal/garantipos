@@ -50,48 +50,4 @@ class Response
     {
         return (new XmlParser($this->getRawBody()))->getValue($key);
     }
-
-    /**
-     * @return array|string
-     * @throws \JsonException
-     */
-    public function getResult()
-    {
-        return $this->getValue($this->requestMethod . 'Result');
-    }
-
-    /**
-     * @return bool
-     */
-    public function isSuccessful(): bool
-    {
-        return $this->getResult()['ServiceResult'] === 'Successful';
-    }
-
-    /**
-     * @return string
-     * @throws \JsonException
-     */
-    public function getStatus(): string
-    {
-        return $this->getResult()['ServiceResult'];
-    }
-
-    /**
-     * @return string
-     * @throws \JsonException
-     */
-    public function getStatusDesc(): string
-    {
-        return $this->getResult()['ServiceResultDescription'];
-    }
-
-    /**
-     * @return string
-     * @throws \JsonException
-     */
-    public function getErrorCode(): string
-    {
-        return $this->getResult()['ErrorCode'];
-    }
 }

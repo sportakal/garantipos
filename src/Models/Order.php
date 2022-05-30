@@ -146,6 +146,8 @@ class Order extends BaseModel
      */
     public function addItem(Item $item): void
     {
+        $item_count = count($this->ItemList);
+        $item->setNumber($item_count + 1);
         $this->ItemList[] = $item;
     }
 
