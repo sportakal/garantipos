@@ -174,7 +174,7 @@ composer install
 * Daha fazla işlem türü eklenecek
     * İptal İşlemi
     * Garanti Pay
-    * Bin sorgulama
+    * ~~Bin sorgulama~~
     * TCKN sorgulama
     * Ön Provizyon işlemleri
 
