@@ -116,13 +116,13 @@ class PostRequestModel extends BaseModel implements RequestModelInterface
         $i = 1;
         foreach ($item_list as $item) {
             $item = $item->toArray();
-            $this->{"orderitem_number$i"} = $item['Number'] ?? '';
-            $this->{"orderitem_productid$i"} = $item['ProductID'] ?? '';
-            $this->{"orderitem_productcode$i"} = $item['ProductCode'] ?? '';
-            $this->{"orderitem_quantity$i"} = $item['Quantity'] ?? '';
-            $this->{"orderitem_price$i"} = $item['Price'] ?? '';
-            $this->{"orderitem_totalamount$i"} = $item['TotalAmount'] ?? '';
-            $this->{"orderitem_description$i"} = $item['Description'] ?? '';
+            $this->{"orderitemnumber$i"} = $item['Number'] ?? '';
+            $this->{"orderitemproductid$i"} = $item['ProductID'] ?? '';
+            $this->{"orderitemproductcode$i"} = $item['ProductCode'] ?? '';
+            $this->{"orderitemquantity$i"} = $item['Quantity'] ?? '';
+            $this->{"orderitemprice$i"} = $item['Price'] ?? '';
+            $this->{"orderitemtotalamount$i"} = $item['TotalAmount'] ?? '';
+            $this->{"orderitemdescription$i"} = $item['Description'] ?? '';
             $i++;
         }
     }
